@@ -7,7 +7,7 @@ function Footer({ logout }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("todo");
+    navigate("/");
     logout();
   };
 

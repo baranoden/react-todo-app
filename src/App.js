@@ -28,6 +28,7 @@ function App() {
             element={<Todo logout={() => setUser(false)} />}
           />
         )}
+        <Route path="*" element={<Navigate to={user ? "/todo" : "/"} />} />
       </Routes>
     </ListContextProvider>
   );

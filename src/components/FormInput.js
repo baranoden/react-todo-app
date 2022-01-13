@@ -28,21 +28,24 @@ function FormInput() {
     }
   }, [editItem]);
   return (
-    <form className="todoform" onSubmit={handleSubmit}>
-      <input
-        className="todoinput"
-        onChange={handleChange}
-        value={title}
-        type="text"
-        name="todos"
-        id="todos"
-        required
-        placeholder="What to do?"
-      />
-      <button className="todobutton" type="submit">
-        Todo!
-      </button>
-    </form>
+    <div>
+      <h1>Todo!</h1>
+      <form className="todoform" onSubmit={handleSubmit}>
+        <input
+          className="todoinput"
+          onChange={handleChange}
+          value={title}
+          type="text"
+          name="todos"
+          id="todos"
+          required
+          placeholder="What to do?"
+        />
+        <button className="todobutton" type="submit">
+          Todo!
+        </button>
+      </form>
+    </div>
   );
 }
 
