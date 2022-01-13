@@ -14,10 +14,14 @@ function Login({ auth }) {
       e.name === username ? e : null
     );
 
-    if (user[0]?.password === pass) {
-      return navigate("todo") & auth();
+    if (user.length === 0) {
+      alert("no match");
     } else {
-      return alert("Wrong Password");
+      if (user[0]?.password === pass) {
+        return navigate("todo") & auth();
+      } else {
+        return alert("Wrong Password");
+      }
     }
   };
 
