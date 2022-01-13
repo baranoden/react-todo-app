@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import ListContextProvider from "./context/ListContext";
+import Login from "./pages/Login";
+import Todo from "./pages/Todo";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react/cjs/react.development";
+import { useEffect } from "react";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const u = localStorage.getItem("user");
+    u && JSON.parse(u) ? setUser(true) : setUser(false);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("user", user);
+  }, [user]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ListContextProvider>
+      <Routes>
+        {!user && (
+          <Route path="/" element={<Login auth={() => setUser(true)} />} />
+        )}
+        {user && (
+          <Route
+            path="/todo"
+            element={<Todo logout={() => setUser(false)} />}
+          />
+        )}
+        <Route path="*" element={<Navigate to={user ? "/todo" : "/"} />} />
+      </Routes>
+    </ListContextProvider>
   );
 }
 
