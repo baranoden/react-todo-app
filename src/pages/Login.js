@@ -15,7 +15,7 @@ function Login({ auth }) {
     );
 
     if (user[0].password === pass) {
-      return navigate("todo"), auth();
+      return navigate("todo") & auth();
     } else {
       return alert("Wrong Password");
     }
